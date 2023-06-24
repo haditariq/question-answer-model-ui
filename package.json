@@ -1,0 +1,44 @@
+{
+  "name": "question-answer-model",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "env-cmd -f .env next start",
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "env-cmd": "^10.1.0",
+    "i": "^0.3.7",
+    "next": "13.4.7",
+    "npm": "^9.7.2",
+    "postcss-cli": "^10.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-loader-spinner": "^5.3.4"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.23",
+    "@storybook/addon-interactions": "^7.0.23",
+    "@storybook/addon-links": "^7.0.23",
+    "@storybook/blocks": "^7.0.23",
+    "@storybook/nextjs": "^7.0.23",
+    "@storybook/react": "^7.0.23",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@types/node": "20.3.1",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.6",
+    "autoprefixer": "^10.4.14",
+    "eslint": "8.43.0",
+    "eslint-config-next": "13.4.7",
+    "eslint-plugin-storybook": "^0.6.12",
+    "postcss": "^8.4.24",
+    "storybook": "^7.0.23",
+    "tailwindcss": "^3.3.2",
+    "typescript": "5.1.3"
+  }
+}
