@@ -1,7 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# QUESTION ANSWER MODEL
+
+## React: Next.js, Typescript.
+## Styling: Tailwind.
+## Documentation: Storybook
 
 ## Getting Started
-
 First, run the development server:
 
 ```bash
@@ -9,26 +12,61 @@ npm run dev
 # or
 yarn dev
 ```
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Approach of implementation (UI chnage made):
+Change in UI design: UI for inputs question and passage is tweaked a bit to let user have a good view of result and input fields. Reason for the change is to fix UI, as in sample input fields are not properly designed they  overlap and looks disturbed.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# Project folder structure:
+```bash
+.
+├── ...
+├── components                            # components folder
+├──   └── Button.tsx                      # button component
+├──   └── Checkbox.tsx                    # checkbox component
+├──   └── Container.tsx                   # container component
+├──   └── Heading.tsx                     # heading component
+├──   └── SubStringBGDecorator.tsx        # sub-string modifier
+├──   └── TextArea.tsx                    # open text area with label
+├── data                                  # Sample data
+├──   └── languages.ts                    # list of languages available in system
+├──   └── sampleCategorySampleData.json   # sample categories list, with all languages variant
+├── hooks                                 # Custom hooks
+├── pages                                 # routes
+├──   └── index.tsx                       # main page
+├── service                               # REST API's
+├──   └── model.ts                        # huggingface API
+├── stories                               # storybook folder, all component with stories autodocs
+├──├── assets
+├──└── Button.stories.ts
+├──└── Checkbox.stories.ts
+├──└── Container.stories.ts
+├──└── Heading.stories.ts
+├──└── StringModifier.stories.ts
+├──└── Textarea.stories.ts
+├── styles                                # styles
+├──└── global.css                         # global styles, tailwind
+├── types                                 # typescript global types
+├──└── languages.ts                       # list of languagues types
+├── utils                                 # helpers
+├── .env                                  # enviroment 
+├── README.md                             # project explantion, features for next versions and sugesstions 
+├── TASK.md                               # Task explanation
+└── ...
+```
 
-## Learn More
+# 3rd party libraries
+Answering the questions models provided by [Hugging face] https://huggingface.co/deepset/roberta-base-squad2
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Recommendation for future versions
+List of features can be added in next versions are:
+- History of turns take by users can be maintained and can be show in a list. List will have a questions, passage, result of the operation and user liked it or not. 
+- In system, an option to remember all passages as context can be added. So, user can take a number of different question with context loaded up. I think this way model will be able to give more context based responses and user will like to response more. 
+- User should be able to add themeselves new categories and they store their passage and question for later reference
+- A search bar for history list can be added.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Contact Developer
+Email: hadi.tariq02@gmail.com <br/>
+LinkedIn: https://www.linkedin.com/in/haditariq02/
