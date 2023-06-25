@@ -1,16 +1,17 @@
 import React from 'react';
 
+// component props
 interface ButtonProps {
   /**
-   * What background color to use
+   * classname for designing
    */
   className?: string;
   /**
-   * Button contents
+   * button text title
    */
   title: string;
   /**
-   * Optional click handler
+   * onClick function on button
    */
   onClick: (key: string) => void;
   /**
@@ -18,14 +19,11 @@ interface ButtonProps {
    */
   disabled: boolean;
   /**
-   * state for button loading and disabled
+   * optional: state for button loading and disabled
    */
   loading?: boolean;
 }
 
-/**
- * Primary UI component for user interaction
- */
 const Button: React.FC<ButtonProps> = ({
   title,
   disabled,
@@ -45,7 +43,7 @@ const Button: React.FC<ButtonProps> = ({
       className={[
         className,
         mode,
-        'flex justify-center items-center',
+        'flex justify-center items-center capitalize',
         'storybook-button',
       ].join(' ')}
       {...props}

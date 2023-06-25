@@ -9,13 +9,16 @@ import { Languages } from '../types/languages';
 import Textarea from '../components/TextArea';
 import { AnsweringModel } from '../service/model';
 import SubStringBGDecorator from '../components/SubStringBGDecorator';
+import { LanguagesList } from '../data/languages';
 
+// sample category structure
 type CatergoryItem = {
   question: string;
   passage: string;
   check: boolean;
 };
 
+// result structure for huggingface API
 type ResultProps = {
   score: number;
   start: number;
@@ -25,14 +28,16 @@ type ResultProps = {
 };
 
 const Home: NextPage = () => {
-  const [categoryTitleList] = useState<string[]>(Object.keys(CategoryData));
-  const [language, setLanguage] = useState<Languages>('english');
-  const [passageValue, setPassageValue] = useState<string>('');
-  const [questionValue, setQuestionsValue] = useState<string>('');
-  const [result, setResult] = useState<ResultProps | null>(null);
-  const [history, setHistory] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [categoryTitleList] = useState<string[]>(Object.keys(CategoryData)); // category list
+  const [language, setLanguage] = useState<string>(LanguagesList[0]); // selected language
+  const [passageValue, setPassageValue] = useState<string>(''); // passage value
+  const [questionValue, setQuestionsValue] = useState<string>(''); // question value
+  const [result, setResult] = useState<ResultProps | null>(null); // result from huggingface API
+  const [loading, setLoading] = useState<boolean>(false); // loading state
 
+  // const [history, setHistory] = useState<string[]>([]);
+
+  // onClick sample category and populate question, passage state
   const onClickCategory = (key: string): void => {
     // @ts-ignore
     const { passage, question }: CatergoryItem = CategoryData[key][language];
@@ -40,19 +45,23 @@ const Home: NextPage = () => {
     setQuestionsValue(question);
   };
 
+  // onChange state passage
   const onChangePassageValue = (newValue: string) => {
     setPassageValue(newValue);
   };
 
+  // onChange state questions
   const onChangeQuestionValue = (newValue: string) => {
     setQuestionsValue(newValue);
   };
 
+  // clear passage and questions state
   const onClear = () => {
     setPassageValue('');
     setQuestionsValue('');
   };
 
+  // calling huggingface API
   const fetechResponseFromHuggyModel = async () => {
     setLoading(true);
     AnsweringModel({
@@ -61,21 +70,16 @@ const Home: NextPage = () => {
     })
       .then((res) => res.data)
       .then((res) => {
-        setResult({
-          ...res,
-          // completString: FindAndReplaceSubString({
-          //   str: passageValue,
-          //   start: res.start,
-          //   end: res.end,
-          // }),
-        });
+        setResult(res);
       })
-      .catch((err) => alert(err.message))
+      .catch((_) => alert('Something went wrong, please try again.'))
       .finally(() => setLoading(false));
   };
 
-  const onShowHistory = () => alert('Showing history in under development!!');
+  // function to enable display of history list
+  const onShowHistory = () => alert('History feature is in V2, coming soon!');
 
+  // helper to render list of sample categories
   const renderSampleCategories = () =>
     categoryTitleList.map((item: string, idx: number) => {
       return (
@@ -84,13 +88,14 @@ const Home: NextPage = () => {
           title={item}
           disabled={false}
           onClick={(key) => onClickCategory(key)}
-          className='bg-primary px-8 py-3 rounded-md text-white my-3 mr-5 capitalize'
+          className='bg-primary px-8 py-3 rounded-md text-white my-3 mr-5'
         />
       );
     });
 
+  // helper to render list of languages with checkbox component
   const renderChecboxes = () =>
-    ['english', 'deutsch'].map((item: string, idx: number) => {
+    LanguagesList.map((item: string, idx: number) => {
       return (
         <Checkbox
           key={idx}
@@ -104,14 +109,16 @@ const Home: NextPage = () => {
     });
 
   return (
-    <div className='flex flex-col items-center p-2'>
+    <Container className='flex flex-col items-center p-2'>
+      {/* rendering main heading */}
       <Heading
         title={'Question Answering'}
         level={'h1'}
         className={'border-gray-300 font-bold my-3'}
       />
 
-      <div className='flex justify-center my-3'>
+      {/* section: text information for how the model is working */}
+      <Container className='flex justify-center my-3'>
         <Heading
           title={
             'AI-based Question Answering can be used in various use cases and industries. Below is a demo that is just a small sample of what Question Answering tailored to your use case can do.'
@@ -119,8 +126,9 @@ const Home: NextPage = () => {
           level={'h4'}
           className={'border-gray-300 font-regular text-center w-2/3'}
         />
-      </div>
+      </Container>
 
+      {/* section: rendering list of sample categories & clear button */}
       <Container className='w-2/3 rounded-md bg-primary-20 my-3 p-3'>
         <Heading
           title={'Enter your own text or use one of these examples:'}
@@ -128,22 +136,26 @@ const Home: NextPage = () => {
           className={'border-gray-300 font-regular'}
         />
 
+        {/* rendering list of sample categories  */}
         <Container className='flex'>
           {renderSampleCategories()}
+          {/* clear question & passage button  */}
           <Button
             key={useId()}
             title={'clear'}
             disabled={false}
             onClick={onClear}
-            className='bg-white px-8 py-3 rounded-md text-black my-3 mr-5 capitalize'
+            className='bg-white px-8 py-3 rounded-md text-black my-3 mr-5'
           />
         </Container>
       </Container>
 
+      {/* Section: redner language options  */}
       <Container className='w-1/4 flex justify-between my-3'>
         {renderChecboxes()}
       </Container>
 
+      {/* Section: Show Result after calling api, matching string decortion  */}
       <Container className='flex w-2/3'>
         <Textarea
           value={passageValue}
@@ -164,6 +176,8 @@ const Home: NextPage = () => {
           }
         />
       </Container>
+
+      {/* Section: Show Result after calling api, matching string decortion  */}
       {result && (
         <Container className='w-2/3 '>
           <Heading title='Step # 3: Answer' level='h4' />
@@ -179,6 +193,8 @@ const Home: NextPage = () => {
           </Container>
         </Container>
       )}
+
+      {/* Section: Request to HUGGY button & show history button */}
       <Container className='flex w-2/3'>
         <Button
           key={useId()}
@@ -186,17 +202,18 @@ const Home: NextPage = () => {
           title={`get the answer (${language})`}
           disabled={false}
           onClick={fetechResponseFromHuggyModel}
-          className='bg-primary text-white w-3/4 mr-1 rounded-md capitalize '
+          className='bg-primary text-white w-3/4 mr-1 rounded-md'
         />
+        {/* Show histotry button */}
         <Button
           key={useId()}
           title={`History`}
           disabled={false}
           onClick={onShowHistory}
-          className='bg-white text-black w-1/4 py-2 rounded-md capitalize border-gray-100 border-2'
+          className='bg-white text-black w-1/4 py-2 rounded-md border-gray-100 border-2'
         />
       </Container>
-    </div>
+    </Container>
   );
 };
 
