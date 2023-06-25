@@ -72,7 +72,7 @@ const Home: NextPage = () => {
       .then((res) => {
         setResult(res);
       })
-      .catch((_) => alert('Something went wrong, please try again.'))
+      .catch((err) => alert('Something went wrong, please try again.'))
       .finally(() => setLoading(false));
   };
 

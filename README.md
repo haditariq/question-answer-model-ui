@@ -1,8 +1,8 @@
 # QUESTION ANSWER MODEL
 
-## React: Next.js, Typescript.
-## Styling: Tailwind.
-## Documentation: Storybook
+Question-answering tool is an front-end application developed using Next.js and Typescript. For styling tailwind is used and for components documentation storybook is used.
+
+System takes a passage as context, question. It's been trained on question-answer pairs, including unanswerable questions, for the task of Question Answering.
 
 ## Getting Started
 First, run the development server:
@@ -12,10 +12,19 @@ npm run dev
 # or
 yarn dev
 ```
+
+To run storybook,
+```bash
+yarn storybook
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Approach of implementation (UI chnage made):
 Change in UI design: UI for inputs question and passage is tweaked a bit to let user have a good view of result and input fields. Reason for the change is to fix UI, as in sample input fields are not properly designed they  overlap and looks disturbed.
+
+# Developer's note
+On clicking "getting the answer" if huggingface alerts "Something went wrong, please try again". Then token by hugging face is overload because of its free version.
 
 
 # Project folder structure:
@@ -58,7 +67,7 @@ Change in UI design: UI for inputs question and passage is tweaked a bit to let 
 
 # 3rd party libraries
 Answering the questions models provided by [Hugging face] https://huggingface.co/deepset/roberta-base-squad2
-
+This is the roberta-base model, fine-tuned using the SQuAD2.0 dataset. It's been trained on question-answer pairs, including unanswerable questions, for the task of Question Answering.
 
 # Recommendation for future versions
 List of features can be added in next versions are:
