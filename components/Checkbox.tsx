@@ -22,9 +22,9 @@ const Checkbox: React.FC<ChexboxProps> = ({
     <button
       className={`flex align-center ${className}`}
       onClick={() => onClick(title)}
-      disabled={disabled}
     >
       <div
+      aria-disabled={disabled}
         className={`rounded-full h-6 w-6 ${status ? activeBg : 'bg-gray-200 '}`}
       />
       <Heading title={title} level='h6' className='ml-2 capitalize' />

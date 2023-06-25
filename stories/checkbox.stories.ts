@@ -6,22 +6,25 @@ const meta: Meta<typeof Checkbox> = {
   title: 'Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
+
 };
 
 export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
-export const Primary: Story = {
+export const Checked: Story = {
   args: {
     title: 'Checked',
-    status: true
+    status: true,
+    activeBg: 'bg-primary'
   },
 };
 
 export const Unchecked: Story = {
   args: {
     title: 'Un-Checked',
-    status: false
+    status: false,
+    activeBg: 'bg-primary'
   },
 };
 
@@ -29,7 +32,8 @@ export const CheckedDisabled: Story = {
   args: {
     title: "disabled",
     status: false,
-    disabled: true
+    disabled: true,
+    activeBg: 'bg-primary'
   },
 };
 
