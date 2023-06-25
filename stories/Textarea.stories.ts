@@ -11,12 +11,32 @@ const meta: Meta<typeof Textarea> = {
 export default meta;
 type Story = StoryObj<typeof Textarea>;
 
-export const Primary: Story = {
+export const TextAreaWithPlaceholder: Story = {
   args: {
     value: 'this is a value of textarea',
     onChange: () => { },
-    className: "",
     placeholder: "This is a palceholder",
     title: "Step # 1"
+  },
+};
+
+export const TextAreaWithClassName: Story = {
+  args: {
+    value: 'Text Area with ClassName',
+    onChange: () => { },
+    className: "border-gray-100 border-2",
+    placeholder: "Text Area with ClassName",
+    title: "Hello # 2"
+  },
+};
+
+
+export const TextAreaWithWidth: Story = {
+  args: {
+    value: 'Text area with full width avaialble',
+    onChange: () => { },
+    className: "border-gray-100 border-2 w-full",
+    placeholder: "Text area with full width avaialble",
+    title: "Hello # 3"
   },
 };
