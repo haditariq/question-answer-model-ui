@@ -11,28 +11,27 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
+export const FullyFunctionButton: Story = {
   args: {
     title: 'Button',
+    className: "bg-primary px-8 py-3 rounded-md text-white my-3 mr-5 capitalize",
+    disabled: false,
+    onClick: () => alert("!CLICKED")
   },
 };
 
-export const Secondary: Story = {
+export const DisabledButton: Story = {
   args: {
     title: 'Button',
+    disabled: true,
+    className: "bg-primary px-8 py-3 rounded-md text-white my-3 mr-5 capitalize",
   },
 };
 
-export const Large: Story = {
+export const LoadingState: Story = {
   args: {
-    size: 'large',
     title: 'Button',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: 'small',
-    title: 'Button',
+    loading: true,
+    className: "bg-primary px-8 py-3 rounded-md text-white my-3 mr-5 capitalize",
   },
 };

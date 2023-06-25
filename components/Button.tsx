@@ -6,10 +6,6 @@ interface ButtonProps {
    */
   className?: string;
   /**
-   * How large should the button be?
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
    * Button contents
    */
   title: string;
@@ -31,7 +27,6 @@ interface ButtonProps {
  * Primary UI component for user interaction
  */
 const Button: React.FC<ButtonProps> = ({
-  size = 'medium',
   title,
   disabled,
   className,
@@ -48,11 +43,10 @@ const Button: React.FC<ButtonProps> = ({
       type='button'
       disabled={disabled || loading}
       className={[
-        'storybook-button',
-        `storybook-button--${size}`,
         className,
         mode,
         'flex justify-center items-center',
+        'storybook-button',
       ].join(' ')}
       {...props}
     >
