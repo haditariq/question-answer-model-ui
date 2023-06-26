@@ -24,8 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Change in UI design: UI for inputs question and passage is tweaked a bit to let user have a good view of result and input fields. Reason for the change is to fix UI, as in sample input fields are not properly designed they  overlap and looks disturbed.
 
 # Developer's note
-On clicking "getting the answer" if huggingface alerts "Something went wrong, please try again". Then token by hugging face is overload because of its free version.
-
+On clicking "getting the answer" if huggingface alerts "Something went wrong, please try again". I'm experiencing "OVERLOADED" response from the API. I have tried different tokens as well but its not working. I think the model availibility itself is down.
 
 # Project folder structure:
 ```bash
