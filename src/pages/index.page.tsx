@@ -87,9 +87,18 @@ const Home = () => {
     huggingFaceMutation.mutate(formData);
   };
 
+  // To check the system output you can comment lines 90-92, and enable lines 95-101
   const dataFetched =
     !huggingFaceMutation.isLoading && huggingFaceMutation.isSuccess;
   const result = huggingFaceMutation.data;
+
+  //   const dataFetched =
+  //   !huggingFaceMutation.isLoading && true;
+  // const result = {
+  //   result: "",
+  //   start: 233,
+  //   end: 248
+  // };
 
   return (
     <Container className='flex flex-col items-center p-2'>

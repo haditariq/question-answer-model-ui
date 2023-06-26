@@ -26,6 +26,11 @@ Change in UI design: UI for inputs question and passage is tweaked a bit to let 
 # Developer's note
 On clicking "getting the answer" if huggingface alerts "Something went wrong, please try again". I'm experiencing "OVERLOADED" response from the API. I have tried different tokens as well but its not working. I think the model availibility itself is down.
 
+There are 2 ways, you can check the output if the system is still overloaded.
+1- there is a screenshot of output ./output.png
+2- src/pages/index.pages.tsx, on line number 90 please read comments for instructions
+
+
 # Project folder structure:
 ```bash
 .
